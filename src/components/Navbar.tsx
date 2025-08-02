@@ -8,57 +8,66 @@ export function Navbar() {
     <nav className="absolute top-0 left-0 right-0 z-50 px-6 py-6">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center">
-          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="text-black"
-            >
-              <path
-                d="M7 17L17 7M17 7H7M17 7V17"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+        <div className="flex items-center space-x-3">
+          <div className="relative">
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="text-white"
+              >
+                <path
+                  d="M12 2L2 7L12 12L22 7L12 2Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 17L12 22L22 17"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2 12L12 17L22 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg blur-sm opacity-50 -z-10"></div>
           </div>
+          <span className="text-white font-semibold text-lg">ExpenseFlow</span>
         </div>
 
         {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-8">
           <Link
             href="#features"
-            className="text-white text-sm font-medium hover:text-gray-300 transition-colors border-b-2 border-white pb-1"
+            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
           >
             Features
-          </Link>
-          <Link
-            href="#how-it-works"
-            className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
-          >
-            How It Works
-          </Link>
-          <Link
-            href="#testimonials"
-            className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
-          >
-            Testimonials
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link
             href="#pricing"
-            className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
+            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
           >
             Pricing
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link
-            href="#faq"
-            className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
+            href="#about"
+            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
           >
-            FAQ
+            About
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
         </div>
 
@@ -66,9 +75,9 @@ export function Navbar() {
         <div>
           <Link
             href="#contact"
-            className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
+            className="bg-white/10 border border-white/20 text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
           >
-            Contact Us
+            Contact
           </Link>
         </div>
       </div>

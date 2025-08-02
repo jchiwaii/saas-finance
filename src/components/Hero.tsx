@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { InfoCard } from "./InfoCard";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 export default function Hero() {
   return (
@@ -16,25 +17,47 @@ export default function Hero() {
             Track & Manage
           </p>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-            Spending
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              With Ease
-            </span>
-          </h1>
+          <div className="relative inline-block">
+            <GlowingEffect
+              className="rounded-full"
+              disabled={false}
+              proximity={100}
+              spread={50}
+              blur={15}
+              glow={true}
+            />
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+              Spending
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                With Ease
+              </span>
+            </h1>
+          </div>
 
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-            Our comprehensive SaaS solutions are tailored to streamline your
-            operations and drive maximum revenue for your business.
+            Take control of your finances with intelligent tracking and seamless
+            expense management.
           </p>
 
-          <Button
-            className="bg-white/10 border border-white/20 text-white px-8 py-3 rounded-xl hover:bg-white/20 transition-colors"
-            size="lg"
-          >
-            Get Started — It&apos;s Free
-          </Button>
+          <div className="relative inline-block">
+            <GlowingEffect
+              className="rounded-xl"
+              disabled={false}
+              proximity={0.8}
+              spread={0.8}
+              blur={10}
+              glow={true}
+            />
+            <MovingBorderButton
+              containerClassName="w-auto h-auto"
+              className="bg-white/10 border border-white/20 text-white px-8 py-3 rounded-xl hover:bg-white/20 transition-colors"
+              borderRadius="0.75rem"
+              duration={3000}
+            >
+              Get Started — It&apos;s Free
+            </MovingBorderButton>
+          </div>
         </div>
 
         {/* Bottom Cards */}
