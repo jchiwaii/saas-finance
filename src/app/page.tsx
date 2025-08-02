@@ -1,138 +1,271 @@
-'use client';
-
+"use client";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, CreditCard, PieChart } from "lucide-react";
 
-export default function Home() {
+export default function HeroGlobe() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-      {/* Background gradient orb effect */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-orange-500/25 to-red-500/25 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      {/* Navigation */}
+      <nav className="absolute top-0 left-0 right-0 z-50 p-6">
+        <div className="flex justify-between items-center">
+          <div className="w-8 h-8 border border-white/20 rounded flex items-center justify-center">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-white"
+            >
+              <path d="m7 11 2-2-2-2" />
+              <path d="M11 13h4" />
+            </svg>
+          </div>
+          <Button
+            variant="secondary"
+            className="bg-gray-800 text-white hover:bg-gray-700"
+          >
+            Contact Us
+          </Button>
+        </div>
+      </nav>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      {/* Globe positioned just below nav, stretched to corners */}
+      <div className="absolute top-35 left-1/2 transform -translate-x-1/2">
+        <div className="relative w-[1600px] h-[1300px]">
+          {/* Outer glow effects */}
+          <div className="absolute inset-0 rounded-[50%] bg-gradient-to-r from-purple-500/30 via-pink-500/30 to-purple-500/30 blur-[80px]"></div>
+          <div className="absolute inset-0 rounded-[50%] bg-gradient-to-br from-purple-400/20 via-transparent to-pink-400/20 blur-[120px]"></div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-6 pt-20 pb-32">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm text-white/90 mb-6">
-            <span className="mr-2">🚀</span>
-            TRACK & MANAGE
+          {/* Main Globe - stretched ellipse */}
+          <div className="absolute inset-0 rounded-[50%] bg-transparent border border-gray-700/30">
+            {/* Grid Pattern Overlay */}
+            <div className="absolute inset-0 rounded-[50%] opacity-40">
+              <svg width="100%" height="100%" className="absolute inset-0">
+                <defs>
+                  <pattern
+                    id="grid"
+                    width="60"
+                    height="40"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 60 0 L 0 0 0 40"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.12)"
+                      strokeWidth="1"
+                    />
+                  </pattern>
+                  <pattern
+                    id="fine-grid"
+                    width="30"
+                    height="20"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 30 0 L 0 0 0 20"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.06)"
+                      strokeWidth="0.5"
+                    />
+                  </pattern>
+                  <mask id="ellipse-mask">
+                    <ellipse cx="50%" cy="50%" rx="50%" ry="50%" fill="white" />
+                  </mask>
+                </defs>
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="url(#fine-grid)"
+                  mask="url(#ellipse-mask)"
+                />
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="url(#grid)"
+                  mask="url(#ellipse-mask)"
+                />
+              </svg>
+            </div>
+
+            {/* Curved Grid Lines for Stretched Sphere Effect */}
+            <div className="absolute inset-0 rounded-[50%]">
+              {/* Horizontal curved lines - adjusted for wider ellipse */}
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={`h-${i}`}
+                  className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent"
+                  style={{
+                    top: `${10 + i * 7}%`,
+                    transform: `scaleX(${
+                      Math.sin((i * Math.PI) / 11) * 0.95 + 0.05
+                    })`,
+                    opacity: Math.sin((i * Math.PI) / 11) * 0.8 + 0.2,
+                  }}
+                />
+              ))}
+
+              {/* Vertical curved lines - more lines for wider surface */}
+              {[...Array(30)].map((_, i) => (
+                <div
+                  key={`v-${i}`}
+                  className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"
+                  style={{
+                    left: `${2 + i * 3.2}%`,
+                    transform: `scaleY(${
+                      Math.sin((i * Math.PI) / 29) * 0.8 + 0.2
+                    })`,
+                    opacity: Math.sin((i * Math.PI) / 29) * 0.6 + 0.4,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Top lighting highlights - adjusted for ellipse */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3/5 h-2/5 bg-gradient-radial from-white/20 to-transparent rounded-[50%] blur-2xl"></div>
+            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-2/5 h-1/4 bg-gradient-radial from-purple-300/15 to-transparent rounded-[50%] blur-xl"></div>
           </div>
 
-          {/* Main Heading */}
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
-            Spending
-            <br />
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-              With Ease
-            </span>
-          </h1>
+          {/* Glowing elliptical rim/edge effect */}
+          <div className="absolute inset-0 rounded-[50%]">
+            {/* Main rim glow */}
+            <div className="absolute inset-0 rounded-[50%] border-2 border-transparent bg-gradient-to-r from-purple-400/40 via-pink-400/40 to-purple-400/40 blur-sm"></div>
+            <div className="absolute inset-0 rounded-[50%] border border-transparent bg-gradient-to-r from-purple-300/60 via-pink-300/60 to-purple-300/60 blur-xs"></div>
 
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Our comprehensive SaaS solutions are tailored to streamline your 
-            operations and drive maximum revenue for your business
-          </p>
+            {/* Sharp rim highlight */}
+            <div className="absolute inset-0 rounded-[50%] border border-white/20"></div>
 
-          {/* CTA Button */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-2xl shadow-blue-500/25 transition-all hover:shadow-blue-500/40 hover:scale-105"
+            {/* Animated rim pulse */}
+            <motion.div
+              className="absolute inset-0 rounded-[50%] border border-purple-400/30"
+              animate={{
+                scale: [1, 1.01, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen pt-20">
+        <div className="text-center max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-gray-300 text-sm tracking-widest uppercase mb-4 font-medium">
+              TRACK & MANAGE
+            </p>
+
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 leading-tight">
+              Spending
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
+                With Ease
+              </span>
+            </h1>
+
+            <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+              Our comprehensive SaaS solutions are tailored to streamline your
+              operations and drive maximum revenue for your business.
+            </p>
+
+            <Button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg rounded-lg shadow-lg shadow-blue-600/25"
+              size="lg"
             >
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="ml-2 text-blue-200">• It's Free</span>
+              <svg
+                className="ml-2 w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
             </Button>
-            <div className="flex items-center text-white/70 text-sm">
-              <span className="mr-2">✨</span>
-              It's Free
-              <ArrowRight className="ml-1 h-4 w-4" />
-            </div>
-          </div>
-        </div>
-
-        {/* Floating Cards */}
-        <div className="relative max-w-6xl mx-auto">
-          {/* Card 1 - Spending Overview */}
-          <div className="absolute -left-4 top-20 transform rotate-[-8deg] hover:rotate-[-4deg] transition-transform duration-300">
-            <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 w-80 shadow-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-gray-400 text-sm font-medium">Remaining (Weekly)</span>
-                <TrendingUp className="h-5 w-5 text-green-400" />
-              </div>
-              <div className="text-4xl font-bold text-white mb-2">$892.50</div>
-              <div className="flex items-center space-x-2">
-                <div className="flex-1 bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-green-400 to-emerald-500 h-2 rounded-full w-3/4"></div>
-                </div>
-                <span className="text-sm text-gray-400">75%</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2 - Saving Goal */}
-          <div className="absolute top-32 left-1/2 transform -translate-x-1/2 rotate-[2deg] hover:rotate-[1deg] transition-transform duration-300">
-            <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 w-72 shadow-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-gray-400 text-sm font-medium">Saving Goal</span>
-                <PieChart className="h-5 w-5 text-blue-400" />
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white mb-1">Goal Reached on</div>
-                <div className="text-3xl font-bold text-blue-400">27 2024</div>
-                <div className="text-4xl font-bold text-white mt-2">$1,680.00</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 - Debit Card */}
-          <div className="absolute -right-4 top-16 transform rotate-[8deg] hover:rotate-[4deg] transition-transform duration-300">
-            <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 w-80 shadow-2xl">
-              <div className="flex items-center justify-between mb-6">
-                <CreditCard className="h-8 w-8 text-cyan-400" />
-                <span className="text-gray-400 text-sm">Debit Card</span>
-              </div>
-              <div className="text-right">
-                <div className="text-5xl font-bold text-white mb-2">$4000</div>
-                <div className="text-cyan-400 text-lg font-medium">
-                  Budget Power for Zeinab
-                </div>
-              </div>
-              <div className="mt-4 pt-4 border-t border-white/10">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-400 text-sm">Available Balance</span>
-                  <div className="w-8 h-8 bg-cyan-400 rounded-full flex items-center justify-center">
-                    <ArrowRight className="h-4 w-4 text-black" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Arrow Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-12 h-12 border-2 border-white/30 rounded-full flex items-center justify-center animate-bounce">
-            <ArrowRight className="h-5 w-5 text-white/70 transform rotate-90" />
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Custom styles for grid pattern */}
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
-      `}</style>
-    </main>
+      {/* Bottom Cards */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="bg-gray-900/90 backdrop-blur-md border border-gray-700/50 rounded-xl p-4 min-w-[200px] shadow-xl"
+        >
+          <div className="text-gray-400 text-sm mb-1">Remaining (Weekly)</div>
+          <div className="text-white text-2xl font-bold">$592.50</div>
+          <div className="flex gap-1 mt-2">
+            {[...Array(10)].map((_, i) => (
+              <div
+                key={i}
+                className={`w-2 h-2 rounded-full ${
+                  i < 6 ? "bg-green-500" : "bg-gray-600"
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="bg-gray-900/90 backdrop-blur-md border border-gray-700/50 rounded-xl p-4 min-w-[200px] shadow-xl"
+        >
+          <div className="text-gray-400 text-sm mb-1">Savings Goal</div>
+          <div className="text-white text-2xl font-bold">$1,680.00</div>
+          <div className="text-gray-400 text-xs mt-1">
+            DATA FROM JAN 22 - JAN 27 2023
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="bg-gray-900/90 backdrop-blur-md border border-gray-700/50 rounded-xl p-4 min-w-[200px] shadow-xl"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-gray-400 text-sm">70%</div>
+            <div className="text-white text-xl font-bold">$4000</div>
+          </div>
+          <div className="text-gray-400 text-xs mb-2">BAC Debit Card</div>
+          <div className="text-blue-400 text-xs">Bucket flower for Zainya</div>
+        </motion.div>
+      </div>
+
+      {/* Close button */}
+      <button className="absolute bottom-8 right-8 w-8 h-8 border border-gray-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   );
 }
