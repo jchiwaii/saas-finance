@@ -106,7 +106,7 @@ export const components = {
     logo: "flex items-center space-x-3",
     menu: "hidden md:flex items-center space-x-8",
     menuItem:
-      "text-slate-300 text-sm font-medium hover:text-white transition-colors relative group",
+      "text-slate-400 text-sm font-medium hover:text-white transition-colors duration-200 relative",
   },
 } as const;
 

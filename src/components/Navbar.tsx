@@ -50,24 +50,21 @@ export function Navbar() {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             href="#features"
-            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
+            className="text-slate-400 text-sm font-medium hover:text-white transition-colors duration-200"
           >
             Features
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link
             href="#pricing"
-            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
+            className="text-slate-400 text-sm font-medium hover:text-white transition-colors duration-200"
           >
             Pricing
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
           <Link
             href="#about"
-            className="text-slate-300 text-sm font-medium hover:text-white transition-colors relative group"
+            className="text-slate-400 text-sm font-medium hover:text-white transition-colors duration-200"
           >
             About
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 group-hover:w-full transition-all duration-300"></span>
           </Link>
         </div>
 
